@@ -1,0 +1,12 @@
+<!-- roster_list.html -->
+<h2>Roster List</h2>
+<ul>
+  {% for roster in rosters %}
+  <li>
+    {{ roster.staff_member.user.username }} - {{ roster.shifts }} -
+    <a href="{% url 'roster_update_url' roster.id %}">Edit</a> -
+    <a href="{% url 'roster_delete_url' roster.id %}">Delete</a>
+  </li>
+  {% endfor %}
+</ul>
+<a href="/create_roster">Add New Roster Entry</a>

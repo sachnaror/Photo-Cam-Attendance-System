@@ -1,0 +1,8 @@
+{% extends 'base.html' %} {% block content %} <a href="/register">register new user</a> <br />
+<a href="/roster_list">roster list</a><br />
+{% if request.user.is_authenticated %}
+<a href="/create_roster">create roster</a><br />
+<a href="/logout">Logout</a>
+{% else %}
+<a href="/login">Login</a>
+{% endif %} {% endblock %}

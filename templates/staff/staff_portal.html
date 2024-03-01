@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}Staff Portal{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Welcome, {{ user.first_name }}!</h2>
+    <p>View your assigned shifts and mark your attendance below.</p>
+
+    <div class="shifts-section">
+        <h3>Your Shifts</h3>
+        {% if shifts %}
+            <ul>
+                {% for shift in shifts %}
+                    <li>{{ shift.day }}: {{ shift.start_time }} - {{ shift.end_time }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No shifts assigned.</p>
+        {% endif %}
+    </div>
+
+    <div class="attendance-section">
+        <h3>Mark Attendance</h3>
+        <p>Click the button below to capture your image and mark your attendance.</p>
+        <button id="capture-btn" class="btn btn-primary">Capture Image</button>
+
+        <!-- Placeholder for the captured image -->
+        <div id="captured-image" style="display:none;">
+            <img src="" alt="Captured image will be displayed here">
+        </div>
+
+        <!-- Form to submit the captured image -->
+        <form id="attendance-form" style="display:none;" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="hidden" name="image" id="image-data">
+            <button type="submit" class="btn btn-success">Submit Attendance</button>
+        </form>
+    </div>
+</div>
+
+<script>
+ /capture-btn.addEventListener('click', function() {
+    // Capture the image
+    Webcam.snap(function(data_uri) {
+        // Display the captured image
+        document.getElementById('captured-image').innerHTML = '<img src="' + data_uri + '"/>';
+        document.getElementById('captured-image').style.display = 'block';
+
+        // Set the captured image as the value of the hidden input field
+        document.getElementById('image-data').value = data_uri;
+
+        // Show the form to submit the captured image
+        document.getElementById('attendance form').style.display = 'block';
+    });
+
+    // Prevent the default form submission
+    e.preventDefault();
+});
+
+// Initialize the webcam
+Webcam.set({
+    width: 320,
+    height: 240,
+    image_format: 'jpeg',
+    jpeg_quality: 90
+});
+Webcam.attach('#my_camera');
+
+// Submit the form when the image is captured
+document.getElementById('attendance-form').addEventListener('submit', function(e) {
+    // Submit the form
+    this.submit();
+
+    // Prevent the default form submission
+    e.preventDefault();
+});
+
+// Display the captured image
+document.getElementById('captured-image').innerHTML = '<img src="' + data_uri + '"/>';
+document.getElementById('captured-image').style.display = 'block';
+
+// Set the captured image as the value of the hidden input field
+document.getElementById('image-data').value = data_uri;
+
+// Show the form to submit the captured image
+document.getElementById('attendance-form').style.display = 'block';
+});
+
+    // Initialize the webcam
+    Webcam.set({
+        width: 320,
+        height: 240,
+        image_format: 'jpeg',
+        jpeg_quality: 90
+    });
+
+</script>
+
+{% endblock %}

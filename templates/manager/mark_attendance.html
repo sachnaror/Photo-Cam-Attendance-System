@@ -1,0 +1,37 @@
+{% extends 'base.html' %} {% block content %}
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %} asdf
+  <video id="video" autoplay width="300" height="200"></video>
+  <button id="capture">Take Photo</button>
+  <canvas id="canvas" width="300" height="200" style="display: none"></canvas>
+  <input type="hidden" name="image_data" id="image_data" />
+
+  <button type="submit">Upload</button>
+</form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+  // JavaScript to capture image from webcam - put this in a separate app.js file
+  const video = document.getElementById("video");
+  const canvas = document.getElementById("canvas");
+  const captureButton = document.getElementById("capture");
+  const imageDataInput = document.getElementById("image_data");
+  console.log("zero");
+  // Access webcam
+  navigator.mediaDevices
+    .getUserMedia({ video: true })
+    .then((stream) => {
+      video.srcObject = stream;
+      video.play();
+    })
+    .catch((error) => console.error("Error accessing camera:", error));
+  console.log("one");
+  // Capture image
+  captureButton.addEventListener("click", () => {
+    const context = canvas.getContext("2d");
+    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    const dataURL = canvas.toDataURL("image/jpeg");
+    imageDataInput.value = dataURL;
+  });
+</script>
+{% endblock content %}

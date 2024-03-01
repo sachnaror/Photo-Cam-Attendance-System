@@ -1,0 +1,10 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container mt-5">
+  <h2>Mark Attendance</h2>
+  <video id="webcam" width="640" height="480" autoplay></video>
+  <canvas id="canvas" width="640" height="480" style="display: none"></canvas>
+  <button id="capture" class="btn btn-primary mt-3">Capture Image</button>
+</div>
+
+<script src="{% static 'js/capture.js' %}"></script>
+{% endblock %}
