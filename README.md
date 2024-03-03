@@ -79,5 +79,3 @@ Contributions to the Attendance Management System are welcome. Please follow the
 3. Make your changes and commit them: `git commit -m 'Add some feature'`.
 4. Push to the original branch: `git push origin feature_branch_name`.
 5. Create the pull request.
-
-# Photo-Cam-Attendance-System
