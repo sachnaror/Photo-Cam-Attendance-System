@@ -1,12 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container mt-4">
+<div class="container">
     <h2>User Registration Form</h2>
     <form method="POST">
         {% csrf_token %}
-        {{ user_form.as_p }}
-        {{ member_form.as_p }}
+        username : {{user_form.username}} <br>
+        <br>
+        password1: {{user_form.password1}} <br>
+        <br>
+        password2: {{user_form.password2}} <br>
+        <br>
+        <!-- {{user_form.as_p}} -->
+        {{ member_form.as_p }} 
         <button type="submit">Register</button>
     </form>
 </div>

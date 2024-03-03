@@ -10,6 +10,7 @@
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     />
     {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
   </head>
   <body>
     <header>
@@ -38,11 +39,14 @@
       </nav>
     </header>
 
+    {% comment %}
     <main role="main" class="container">
       {% block content %}
       <!-- The content block where child templates will inject content -->
       {% endblock %}
     </main>
+    {% endcomment %}
+    <div class="main-content">{% block content %}{% endblock %}</div>
 
     <footer class="footer mt-auto py-3">
       <div class="container">

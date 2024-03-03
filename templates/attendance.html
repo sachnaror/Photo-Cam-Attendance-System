@@ -1,0 +1,20 @@
+{% extends 'base.html' %} {% block content %}
+<div class="content-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Date and Time</th>
+        <th>Image</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for record in attendance_records %}
+      <tr>
+        <td>{{ record.timestamp }}</td>
+        <td><img src="{{ record.image.url }}" alt="Attendance Image" /></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

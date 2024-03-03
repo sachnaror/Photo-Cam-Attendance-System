@@ -1,12 +1,22 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% block content %} {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'attendance.css' %}" />
+<h2>Mark Your attendance</h2>
 <form method="post" enctype="multipart/form-data">
-  {% csrf_token %} asdf
-  <video id="video" autoplay width="300" height="200"></video>
-  <button id="capture">Take Photo</button>
-  <canvas id="canvas" width="300" height="200" style="display: none"></canvas>
-  <input type="hidden" name="image_data" id="image_data" />
-
-  <button type="submit">Upload</button>
+  {% csrf_token %}
+  <div class="video_container">
+  <div class="video_display video_box">
+    <video id="video" autoplay width="300" height="200"></video>
+    <button id="capture">Take Photo</button>
+    <canvas id="canvas" width="300" height="200" style="display: none"></canvas>
+    <input type="hidden" name="image_data" id="image_data" />
+  </div>
+  <div id="time-options video_box">
+    {% for a, b in roster_list %}
+      <input type="radio" name="selected_time" id="time_{{ hours }}" value="{{ a }}:{{b}}">
+      <label for="time_{{ hours }}">{{ a }} hours : {{ b }} shift</label><br>
+    {% endfor %}
+  </div>
+</div>
 </form>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

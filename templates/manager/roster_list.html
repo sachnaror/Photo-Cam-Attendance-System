@@ -1,12 +1,43 @@
 <!-- roster_list.html -->
+
+{% extends 'base.html' %} {% block content %}
 <h2>Roster List</h2>
 <ul>
-  {% for roster in rosters %}
+  {% comment %} {% for roster in rosters %}
   <li>
     {{ roster.staff_member.user.username }} - {{ roster.shifts }} -
     <a href="{% url 'roster_update_url' roster.id %}">Edit</a> -
     <a href="{% url 'roster_delete_url' roster.id %}">Delete</a>
   </li>
-  {% endfor %}
+  {% endfor %} {% endcomment %}
 </ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number of Work Days</th>
+      <th>Shift Time</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for roster in rosters %}
+    <tr>
+      <td>{{ roster.staff_member.user.username }}</td>
+      <td>{{ roster.working_days }}</td>
+      <td>{{ roster.shifts }}</td>
+      <td><a href="{% url 'roster_update_url' roster.id %}">Edit</a></td>
+      <td><a href="{% url 'roster_delete_url' roster.id %}">Delete</a></td>
+      <td>
+        <a href="{% url 'roster_attendance_url' roster.id roster.working_days roster.shifts %}"
+          >Attendance</a
+        >
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 <a href="/create_roster">Add New Roster Entry</a>
+{% endblock %}
