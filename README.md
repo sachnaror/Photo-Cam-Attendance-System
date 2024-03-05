@@ -1,9 +1,6 @@
 
 # Attendance Management System with Image Capture
 
-## Introduction
-
-This Attendance Management System is a web application designed to allow managers to create a roster for staff and enable staff members to mark their attendance by capturing an image using a webcam. The system is built with Django and uses Bootstrap for a minimalistic frontend.
 
 ## Features
 
